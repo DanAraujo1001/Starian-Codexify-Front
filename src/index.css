@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: rgb(var(--brand-primary) / <alpha-value>);
+  --color-brand-dark: rgb(var(--brand-dark) / <alpha-value>);
+  --color-brand-hover: rgb(var(--brand-hover) / <alpha-value>);
+  --color-brand-subtle: rgb(var(--brand-subtle) / <alpha-value>);
+
+  --color-surface-primary: rgb(var(--surface-primary) / <alpha-value>);
+  --color-surface-subtle: rgb(var(--surface-subtle) / <alpha-value>);
+  --color-surface-nav: rgb(var(--surface-nav) / <alpha-value>);
+  --color-surface-brand-medium: rgb(
+    var(--surface-brand-medium) / <alpha-value>
+  );
+  --color-surface-brand-low: rgb(var(--surface-brand-low) / <alpha-value>);
+
+  --color-text-primary: rgb(var(--text-primary) / <alpha-value>);
+  --color-text-secondary: rgb(var(--text-secondary) / <alpha-value>);
+  --color-text-button: rgb(var(--text-button) / <alpha-value>);
+  --color-text-brand: rgb(var(--text-brand) / <alpha-value>);
+  --color-text-inverse: rgb(var(--text-inverse) / <alpha-value>);
+
+  --color-status-critical: rgb(var(--critical-light) / <alpha-value>);
+  --color-status-medium: rgb(var(--medium-light) / <alpha-value>);
+  --color-status-excellent: rgb(var(--excellent-light) / <alpha-value>);
+
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "Fira Code", monospace;
+}
+
+@layer base {
+  :root {
+    --font-primary: "Inter", sans-serif;
+
+    /* Brand Colors */
+    --brand-primary: 30 58 138;
+    --brand-dark: 15 23 42;
+    --brand-hover: 23 37 84;
+    --brand-subtle: 240 247 255;
+
+    /* Surfaces */
+    --surface-primary: 255 255 255;
+    --surface-subtle: 249 250 251;
+    --surface-nav: 255 255 255;
+    --surface-brand-medium: 30 58 138; /* Opacity handled by Tailwind */
+    --surface-brand-low: 30 58 138; /* Opacity handled by Tailwind */
+
+    /* Text */
+    --text-primary: 17 24 39;
+    --text-secondary: 107 114 128;
+    --text-button: 55 65 81;
+    --text-brand: 255 255 255;
+    --text-inverse: 255 255 255;
+
+    /* Status & Feedback */
+    --critical-light: 251 44 54;
+    --critical-dark: 193 0 7;
+    --medium-light: 240 177 0;
+    --medium-dark: 166 95 0;
+    --excellent-light: 0 201 80;
+    --excellent-dark: 0 130 54;
+
+    /* Borders & Overlays */
+    --border-default: 229 231 235;
+    --bg-overlay: 0 0 0;
+  }
+
+  .dark {
+    /* Brand Colors */
+    --brand-primary: 30 58 138;
+    --brand-dark: 23 37 84;
+    --brand-hover: 186 230 253;
+    --brand-subtle: 15 23 42;
+
+    /* Surfaces */
+    --surface-primary: 17 24 39;
+    --surface-subtle: 55 65 81;
+    --surface-nav: 31 41 55;
+    --surface-brand-medium: 186 230 253;
+    --surface-brand-low: 186 230 253;
+
+    /* Text */
+    --text-primary: 255 255 255;
+    --text-secondary: 156 163 175;
+    --text-button: 255 255 255;
+    --text-brand: 255 255 255;
+    --text-inverse: 17 24 39;
+
+    /* Status & Feedback */
+    --critical-light: 251 44 54;
+    --critical-dark: 248 85 93;
+    --medium-light: 240 177 0;
+    --medium-dark: 234 179 24;
+    --excellent-light: 0 201 80;
+    --excellent-dark: 8 219 92;
+
+    /* Borders & Overlays */
+    --border-default: 75 85 99;
+    --bg-overlay: 0 0 0;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-surface-primary text-text-primary antialiased;
+    font-family: var(--font-primary);
+  }
+}
