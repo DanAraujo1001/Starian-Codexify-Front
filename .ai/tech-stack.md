@@ -11,6 +11,12 @@
 
 ---
 
+## 📦 Gerenciador de Pacotes
+- `npm`: Gerenciador de pacotes oficial. 
+- **Regra:** Não utilizar `yarn` ou `pnpm` para evitar conflitos de lockfile (`package-lock.json`).
+
+---
+
 ## 🗺️ Roteamento
 
 - `react-router-dom v6`: roteamento client-side com `createBrowserRouter`
