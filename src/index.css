@@ -1,28 +1,27 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-primary: rgb(var(--brand-primary) / <alpha-value>);
-  --color-brand-dark: rgb(var(--brand-dark) / <alpha-value>);
-  --color-brand-hover: rgb(var(--brand-hover) / <alpha-value>);
-  --color-brand-subtle: rgb(var(--brand-subtle) / <alpha-value>);
+  --color-brand-primary: rgb(var(--brand-primary));
+  --color-brand-dark: rgb(var(--brand-dark));
+  --color-brand-hover: rgb(var(--brand-hover));
+  --color-brand-subtle: rgb(var(--brand-subtle));
 
-  --color-surface-primary: rgb(var(--surface-primary) / <alpha-value>);
-  --color-surface-subtle: rgb(var(--surface-subtle) / <alpha-value>);
-  --color-surface-nav: rgb(var(--surface-nav) / <alpha-value>);
-  --color-surface-brand-medium: rgb(
-    var(--surface-brand-medium) / <alpha-value>
-  );
-  --color-surface-brand-low: rgb(var(--surface-brand-low) / <alpha-value>);
+  --color-surface-primary: rgb(var(--surface-primary));
+  --color-surface-subtle: rgb(var(--surface-subtle));
+  --color-surface-nav: rgb(var(--surface-nav));
+  --color-surface-brand-medium: rgb(var(--surface-brand-medium));
+  --color-surface-brand-low: rgb(var(--surface-brand-low));
 
-  --color-text-primary: rgb(var(--text-primary) / <alpha-value>);
-  --color-text-secondary: rgb(var(--text-secondary) / <alpha-value>);
-  --color-text-button: rgb(var(--text-button) / <alpha-value>);
-  --color-text-brand: rgb(var(--text-brand) / <alpha-value>);
-  --color-text-inverse: rgb(var(--text-inverse) / <alpha-value>);
+  --color-text-primary: rgb(var(--text-primary));
+  --color-text-secondary: rgb(var(--text-secondary));
+  --color-text-button: rgb(var(--text-button));
+  --color-text-brand: rgb(var(--text-brand));
+  --color-text-inverse: rgb(var(--text-inverse));
 
-  --color-status-critical: rgb(var(--critical-light) / <alpha-value>);
-  --color-status-medium: rgb(var(--medium-light) / <alpha-value>);
-  --color-status-excellent: rgb(var(--excellent-light) / <alpha-value>);
+  --color-status-critical: rgb(var(--critical-light));
+  --color-status-medium: rgb(var(--medium-light));
+  --color-status-excellent: rgb(var(--excellent-light));
+  --color-border-default: rgb(var(--border-default));
 
   --radius-md: 8px;
   --radius-lg: 12px;
