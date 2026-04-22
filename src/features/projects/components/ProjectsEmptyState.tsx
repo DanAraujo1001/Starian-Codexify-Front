@@ -1,5 +1,6 @@
 import { type FC } from "react";
 import { Plus } from "lucide-react";
+import Button from "@/components/ui/Button";
 
 interface ProjectsEmptyStateProps {
   onNewProject: () => void;
@@ -18,14 +19,10 @@ const ProjectsEmptyState: FC<ProjectsEmptyStateProps> = ({ onNewProject }) => (
       <div className="flex flex-wrap items-center justify-center gap-2 text-center text-sm leading-5.25 text-text-secondary">
         <span>Clique em</span>
 
-        <button
-          type="button"
-          onClick={onNewProject}
-          className="inline-flex h-9 items-center gap-2 rounded-sm bg-brand-primary px-3 text-text-brand transition-colors duration-200 hover:bg-brand-hover"
-        >
+        <Button className="h-9 rounded-sm px-3" onClick={onNewProject}>
           <Plus className="size-4" aria-hidden="true" strokeWidth={1.75} />
           <span className="text-sm font-medium">Novo Projeto</span>
-        </button>
+        </Button>
 
         <span>para começar!</span>
       </div>

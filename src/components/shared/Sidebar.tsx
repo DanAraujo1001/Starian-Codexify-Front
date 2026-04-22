@@ -8,6 +8,7 @@ import {
   Settings,
   type LucideIcon,
 } from "lucide-react";
+import Button from "@/components/ui/Button";
 import { cn } from "@/utils/cn";
 
 interface SidebarProps {
@@ -61,13 +62,12 @@ const Sidebar: FC<SidebarProps> = ({
       </div>
       <nav className="flex flex-col gap-2 mb-6">
         {menu.map((item) => (
-          <button
+          <Button
             key={item.key}
+            variant={selected === item.key ? "primary" : "ghost"}
             className={cn(
-              "flex items-center gap-2 px-2 py-2 rounded transition-all duration-200 cursor-pointer",
-              selected === item.key
-                ? "bg-brand-primary text-text-brand"
-                : "hover:bg-surface-subtle text-text-primary",
+              "w-full justify-start rounded px-2 py-2 transition-all duration-200",
+              selected === item.key && "text-text-brand",
             )}
             onClick={() => onSelect(item.key)}
             aria-current={selected === item.key ? "page" : undefined}
@@ -78,16 +78,13 @@ const Sidebar: FC<SidebarProps> = ({
               strokeWidth={1.75}
             />
             <span className="text-sm font-sans font-medium">{item.label}</span>
-          </button>
+          </Button>
         ))}
       </nav>
-      <button
-        className="mt-2 flex w-full items-center justify-center gap-2 rounded-md bg-brand-primary py-3 text-sm font-medium text-text-brand transition-colors duration-200 hover:bg-brand-hover"
-        onClick={onNewProject}
-      >
+      <Button className="mt-2 w-full py-3" onClick={onNewProject}>
         <Plus className="h-4 w-4" aria-hidden="true" strokeWidth={1.75} />
         Novo Projeto
-      </button>
+      </Button>
     </div>
     <div className="border border-border-default rounded-md flex items-center gap-3 p-3 mt-6">
       <img
