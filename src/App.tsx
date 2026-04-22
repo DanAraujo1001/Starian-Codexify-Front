@@ -1,7 +1,8 @@
 import "./App.css";
+import Home from "@/pages/Home";
 
-function App() {
-  return <></>;
-}
+const App = () => {
+  return <Home />;
+};
 
 export default App;
