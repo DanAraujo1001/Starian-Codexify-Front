@@ -4,6 +4,7 @@ import {
   FileText,
   Home,
   PieChart,
+  Plus,
   Settings,
   type LucideIcon,
 } from "lucide-react";
@@ -63,7 +64,7 @@ const Sidebar: FC<SidebarProps> = ({
           <button
             key={item.key}
             className={cn(
-              "flex items-center gap-2 px-2 py-2 rounded transition-all duration-200",
+              "flex items-center gap-2 px-2 py-2 rounded transition-all duration-200 cursor-pointer",
               selected === item.key
                 ? "bg-brand-primary text-text-brand"
                 : "hover:bg-surface-subtle text-text-primary",
@@ -81,9 +82,10 @@ const Sidebar: FC<SidebarProps> = ({
         ))}
       </nav>
       <button
-        className="bg-brand-primary text-text-brand w-full py-3 rounded-md font-medium text-sm mt-2 transition-colors duration-200 hover:bg-brand-hover"
+        className="mt-2 flex w-full items-center justify-center gap-2 rounded-md bg-brand-primary py-3 text-sm font-medium text-text-brand transition-colors duration-200 hover:bg-brand-hover"
         onClick={onNewProject}
       >
+        <Plus className="h-4 w-4" aria-hidden="true" strokeWidth={1.75} />
         Novo Projeto
       </button>
     </div>
