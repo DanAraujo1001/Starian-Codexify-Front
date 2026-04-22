@@ -4,6 +4,7 @@ import Header from "@/components/shared/Header";
 
 interface DashboardLayoutProps {
   children: ReactNode;
+  onNewProject?: () => void;
 }
 
 const mockUser = {
@@ -12,18 +13,23 @@ const mockUser = {
   avatarUrl: "/assets/avatar-jorge.png",
 };
 
-const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
+const DashboardLayout: FC<DashboardLayoutProps> = ({
+  children,
+  onNewProject,
+}) => {
   const [selected, setSelected] = useState("home");
+  const handleNewProject = onNewProject ?? (() => alert("Novo Projeto"));
+
   return (
     <div className="flex h-screen w-screen bg-surface-primary">
       <Sidebar
         user={mockUser}
         selected={selected}
         onSelect={setSelected}
-        onNewProject={() => alert("Novo Projeto")}
+        onNewProject={handleNewProject}
       />
       <div className="flex-1 flex flex-col">
-        <Header onNewProject={() => alert("Novo Projeto")} />
+        <Header onNewProject={handleNewProject} />
         <main className="flex-1 flex flex-col items-center py-8 overflow-y-auto gap-8">
           {children}
         </main>
