@@ -6,7 +6,7 @@ const ProjectSearchInput: FC<InputHTMLAttributes<HTMLInputElement>> = (
   <div className="relative w-2xl h-12">
     <input
       {...props}
-      className="bg-surface-primary border border-border-default rounded-md shadow-sm pl-3 pr-10 py-1.5 w-full h-full text-sm text-text-secondary placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-brand-primary transition-all duration-200"
+      className="bg-surface-primary border border-border-default rounded-md shadow-sm pl-3 pr-10 py-1.5 w-full h-full text-sm text-text-secondary placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-brand-primary transition-all duration-200 hover:border-brand-primary hover:shadow-md"
       placeholder="Qual Projeto você procura"
       aria-label="Buscar projeto"
     />
