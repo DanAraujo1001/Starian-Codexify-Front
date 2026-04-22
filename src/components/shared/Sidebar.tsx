@@ -1,5 +1,7 @@
-import { type FC } from "react";
+import { type FC, useState } from "react";
 import {
+  ChevronLeft,
+  ChevronRight,
   CircleHelp,
   FileText,
   Home,
@@ -49,59 +51,119 @@ const Sidebar: FC<SidebarProps> = ({
   onNewProject,
   selected,
   onSelect,
-}) => (
-  <aside className="bg-surface-primary border-r border-border-default flex flex-col justify-between w-79.75 h-full p-6">
-    <div>
-      <div className="flex items-center gap-2 h-16 mb-6">
-        <div className="bg-brand-primary rounded-md w-8 h-8 flex items-center justify-center">
-          <img src="/assets/sidebar-logo.svg" alt="Logo" className="w-4 h-4" />
-        </div>
-        <span className="font-medium text-lg text-text-primary font-sans">
-          Codexify
-        </span>
-      </div>
-      <nav className="flex flex-col gap-2 mb-6">
-        {menu.map((item) => (
-          <Button
-            key={item.key}
-            variant={selected === item.key ? "primary" : "ghost"}
-            className={cn(
-              "w-full justify-start rounded px-2 py-2 transition-all duration-200",
-              selected === item.key && "text-text-brand",
-            )}
-            onClick={() => onSelect(item.key)}
-            aria-current={selected === item.key ? "page" : undefined}
-          >
-            <item.icon
-              className="w-4 h-4"
-              aria-hidden="true"
-              strokeWidth={1.75}
-            />
-            <span className="text-sm font-sans font-medium">{item.label}</span>
-          </Button>
-        ))}
-      </nav>
-      <Button className="mt-2 w-full py-3" onClick={onNewProject}>
-        <Plus className="h-4 w-4" aria-hidden="true" strokeWidth={1.75} />
-        Novo Projeto
-      </Button>
-    </div>
-    <div className="border border-border-default rounded-md flex items-center gap-3 p-3 mt-6">
-      <img
-        src={user.avatarUrl}
-        alt={user.name}
-        className="w-10 h-10 rounded-full object-cover"
-      />
+}) => {
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  return (
+    <aside
+      className={cn(
+        "bg-surface-primary border-r border-border-default flex h-full flex-col justify-between p-6 transition-all duration-200",
+        isCollapsed ? "w-26 min-w-25 p-2" : "w-79.75",
+      )}
+    >
       <div>
-        <div className="text-sm font-sans font-normal text-text-primary">
-          {user.name}
+        <div
+          className={cn(
+            "mb-6 flex h-16 items-center",
+            isCollapsed ? "justify-center" : "justify-between",
+          )}
+        >
+          <div className="flex items-center gap-2">
+            <div className="bg-brand-primary rounded-md w-8 h-8 flex items-center justify-center">
+              <img
+                src="/assets/sidebar-logo.svg"
+                alt="Logo"
+                className="w-4 h-4"
+              />
+            </div>
+            {!isCollapsed && (
+              <span className="font-medium text-lg text-text-primary font-sans">
+                Codexify
+              </span>
+            )}
+          </div>
+
+          <Button
+            variant="ghost"
+            className="h-8 w-8 p-0"
+            onClick={() => setIsCollapsed((state) => !state)}
+            aria-label={isCollapsed ? "Expandir sidebar" : "Recolher sidebar"}
+          >
+            {isCollapsed ? (
+              <ChevronRight className="h-4 w-4" aria-hidden="true" />
+            ) : (
+              <ChevronLeft className="h-4 w-4" aria-hidden="true" />
+            )}
+          </Button>
         </div>
-        <div className="text-xs font-sans text-text-secondary">
-          {user.email}
-        </div>
+
+        <nav className="flex flex-col gap-2 mb-6">
+          {menu.map((item) => (
+            <Button
+              key={item.key}
+              variant={selected === item.key ? "primary" : "ghost"}
+              className={cn(
+                "w-full rounded px-2 py-2 transition-all duration-200",
+                isCollapsed ? "justify-center gap-0 px-0" : "justify-start",
+                selected === item.key && "text-text-brand",
+              )}
+              onClick={() => onSelect(item.key)}
+              aria-current={selected === item.key ? "page" : undefined}
+              aria-label={item.label}
+            >
+              <item.icon
+                className="w-4 h-4"
+                aria-hidden="true"
+                strokeWidth={1.75}
+              />
+              {!isCollapsed && (
+                <span className="text-sm font-sans font-medium">
+                  {item.label}
+                </span>
+              )}
+            </Button>
+          ))}
+        </nav>
+
+        <Button
+          className={cn("mt-2 w-full py-3", isCollapsed ? "px-0" : "")}
+          onClick={onNewProject}
+          aria-label="Novo Projeto"
+        >
+          <Plus className="h-4 w-4" aria-hidden="true" strokeWidth={1.75} />
+          {!isCollapsed && "Novo Projeto"}
+        </Button>
       </div>
-    </div>
-  </aside>
-);
+
+      <div
+        className={cn(
+          "mt-6 border border-border-default overflow-hidden",
+          isCollapsed
+            ? "flex h-16 w-16 items-center justify-center rounded-full bg-surface-primary p-1"
+            : "flex items-center gap-3 p-3 rounded-lg",
+        )}
+      >
+        <img
+          src={user.avatarUrl}
+          alt={user.name}
+          className={cn(
+            "rounded-full object-cover",
+            isCollapsed ? "h-10 w-10" : "h-10 w-10",
+          )}
+        />
+        {!isCollapsed && (
+          <div>
+            <div className="text-sm font-sans font-normal text-text-primary">
+              {user.name}
+            </div>
+            <div className="text-xs font-sans text-text-secondary">
+              {user.email}
+            </div>
+          </div>
+        )}
+      </div>
+    </aside>
+  );
+};
 
 export default Sidebar;
