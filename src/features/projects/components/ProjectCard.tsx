@@ -23,13 +23,11 @@ const ProjectCard: FC<ProjectCardProps> = ({
       <div className="text-sm text-text-primary mb-4">{manager}</div>
     </div>
     <div className="bg-brand-primary rounded-md h-8 flex items-center px-3 justify-between">
-      <span className="text-text-brand text-sm opacity-80">
-        Última requisição:
-      </span>
+      <span className="text-sm text-text-brand">Última requisição:</span>
       <span className="text-text-brand text-sm">{lastRequest}</span>
     </div>
     {highlight && (
-      <div className="absolute -top-2 -right-2 bg-brand-primary rounded-full shadow-[0px_10px_15px_0px_rgba(0,0,0,0.1),0px_4px_6px_0px_rgba(0,0,0,0.1)] w-8 h-8 flex items-center justify-center">
+      <div className="absolute -top-2 -right-2 flex h-8 w-8 items-center justify-center rounded-full bg-brand-primary shadow-highlight">
         <Bell
           className="w-4 h-4 text-text-brand"
           aria-hidden="true"

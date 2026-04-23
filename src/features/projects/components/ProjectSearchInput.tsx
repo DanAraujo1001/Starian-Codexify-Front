@@ -3,10 +3,10 @@ import type { FC, InputHTMLAttributes } from "react";
 const ProjectSearchInput: FC<InputHTMLAttributes<HTMLInputElement>> = (
   props,
 ) => (
-  <div className="relative w-2xl h-12">
+  <div className="relative h-12 w-2xl">
     <input
       {...props}
-      className="bg-surface-primary border border-border-default rounded-md shadow-sm pl-3 pr-10 py-1.5 w-full h-full text-sm text-text-secondary placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-brand-primary transition-all duration-200 hover:border-brand-primary hover:shadow-md"
+      className="bg-surface-primary border border-border-default rounded-md shadow-input pl-3 pr-10 py-1.5 w-full h-full text-sm text-text-secondary placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-brand-primary transition-all duration-200 hover:border-brand-primary hover:shadow-input-hover"
       placeholder="Qual Projeto você procura"
       aria-label="Buscar projeto"
     />

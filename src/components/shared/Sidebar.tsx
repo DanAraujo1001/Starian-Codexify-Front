@@ -58,7 +58,7 @@ const Sidebar: FC<SidebarProps> = ({
     <aside
       className={cn(
         "bg-surface-primary border-r border-border-default flex h-full flex-col justify-between p-6 transition-all duration-200",
-        isCollapsed ? "w-26 min-w-25 p-2" : "w-79.75",
+        isCollapsed ? "w-[5.525rem] min-w-21.25 p-2" : "w-[16.9469rem]",
       )}
     >
       <div>
@@ -135,20 +135,25 @@ const Sidebar: FC<SidebarProps> = ({
         </Button>
       </div>
 
-      <div
+      <Button
+        variant="ghost"
         className={cn(
-          "mt-6 border border-border-default overflow-hidden",
+          "mt-6 w-full overflow-hidden border border-border-default p-0 text-left transition-all duration-200 hover:bg-surface-subtle",
+          selected === "account" && "border-brand-primary bg-brand-subtle",
           isCollapsed
             ? "flex h-16 w-16 items-center justify-center rounded-full bg-surface-primary p-1"
-            : "flex items-center gap-3 p-3 rounded-lg",
+            : "flex items-center gap-3 rounded-lg p-3",
         )}
+        onClick={() => onSelect("account")}
+        aria-current={selected === "account" ? "page" : undefined}
+        aria-label={`Abrir conta de ${user.name}`}
       >
         <img
-          src={user.avatarUrl}
+          src={"https://cdn-icons-png.flaticon.com/512/1458/1458201.png"}
           alt={user.name}
           className={cn(
             "rounded-full object-cover",
-            isCollapsed ? "h-10 w-10" : "h-10 w-10",
+            isCollapsed ? "h-8 w-8" : "h-10 w-10",
           )}
         />
         {!isCollapsed && (
@@ -161,7 +166,7 @@ const Sidebar: FC<SidebarProps> = ({
             </div>
           </div>
         )}
-      </div>
+      </Button>
     </aside>
   );
 };

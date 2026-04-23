@@ -5,6 +5,15 @@ const config: Config = {
   darkMode: "class", // Habilita troca de tema via classe .dark
   theme: {
     extend: {
+      boxShadow: {
+        card: "0px 1px 3px 0px rgba(0,0,0,0.1), 0px 1px 2px 0px rgba(0,0,0,0.06)",
+        highlight:
+          "0px 10px 15px 0px rgba(0,0,0,0.1), 0px 4px 6px 0px rgba(0,0,0,0.1)",
+        avatar: "inset 0 0 0 1px rgba(229,231,235,0.75)",
+        input: "0px 1px 2px 0px rgba(0,0,0,0.05)",
+        "input-hover":
+          "0px 4px 6px -1px rgba(0,0,0,0.1), 0px 2px 4px -2px rgba(0,0,0,0.1)",
+      },
       colors: {
         brand: {
           primary: "rgb(var(--brand-primary) / <alpha-value>)",
