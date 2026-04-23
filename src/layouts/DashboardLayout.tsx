@@ -1,16 +1,11 @@
-import {
-  type Dispatch,
-  type FC,
-  type ReactNode,
-  type SetStateAction,
-} from "react";
+import { type FC, type ReactNode } from "react";
 import Sidebar from "@/components/shared/Sidebar";
 import Header from "@/components/shared/Header";
 
 interface DashboardLayoutProps {
   children: ReactNode;
   selected: string;
-  onSelect: Dispatch<SetStateAction<string>>;
+  onSelect: (section: string) => void;
   onNewProject?: () => void;
 }
 

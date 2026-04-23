@@ -1,4 +1,4 @@
-import { type Dispatch, type FC, type SetStateAction, useState } from "react";
+import { type FC, useState } from "react";
 import {
   ChevronLeft,
   ChevronRight,
@@ -21,7 +21,7 @@ interface SidebarProps {
   };
   onNewProject: () => void;
   selected: string;
-  onSelect: Dispatch<SetStateAction<string>>;
+  onSelect: (section: string) => void;
 }
 
 interface MenuItem {
@@ -141,7 +141,7 @@ const Sidebar: FC<SidebarProps> = ({
           "mt-6 w-full overflow-hidden border border-border-default p-0 text-left transition-all duration-200 hover:bg-surface-subtle",
           selected === "account" && "border-brand-primary bg-brand-subtle",
           isCollapsed
-            ? "flex h-16 w-16 items-center justify-center rounded-[9999px] bg-surface-primary p-1"
+            ? "flex h-16 w-16 items-center justify-center rounded-full bg-surface-primary p-1"
             : "flex items-center gap-3 rounded-lg p-3",
         )}
         onClick={() => onSelect("account")}
