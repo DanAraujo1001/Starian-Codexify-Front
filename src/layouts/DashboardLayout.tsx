@@ -1,9 +1,16 @@
-import { type FC, type ReactNode, useState } from "react";
+import {
+  type Dispatch,
+  type FC,
+  type ReactNode,
+  type SetStateAction,
+} from "react";
 import Sidebar from "@/components/shared/Sidebar";
 import Header from "@/components/shared/Header";
 
 interface DashboardLayoutProps {
   children: ReactNode;
+  selected: string;
+  onSelect: Dispatch<SetStateAction<string>>;
   onNewProject?: () => void;
 }
 
@@ -15,9 +22,10 @@ const mockUser = {
 
 const DashboardLayout: FC<DashboardLayoutProps> = ({
   children,
+  selected,
+  onSelect,
   onNewProject,
 }) => {
-  const [selected, setSelected] = useState("home");
   const handleNewProject = onNewProject ?? (() => alert("Novo Projeto"));
 
   return (
@@ -25,7 +33,7 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({
       <Sidebar
         user={mockUser}
         selected={selected}
-        onSelect={setSelected}
+        onSelect={onSelect}
         onNewProject={handleNewProject}
       />
       <div className="flex-1 flex flex-col">
