@@ -1,6 +1,9 @@
 import { LogOut, Mail, Trash2, User, UserRound, Users } from "lucide-react";
+import { useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import Button from "@/components/ui/Button";
 import AccountInfoRow from "@/features/account/components/AccountInfoRow";
+import DeleteUserModal from "../features/account/components/DeleteUserModal";
 
 const managerEmails = [
   "joao.manager@empresa.com.br",
@@ -9,6 +12,10 @@ const managerEmails = [
 ];
 
 const Account = () => {
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  const navigate = useNavigate();
+
   return (
     <section className="flex w-full max-w-3xl flex-col items-center gap-7 px-4 pb-12 pt-4 text-center sm:px-0">
       <div className="flex flex-col items-center gap-5">
@@ -58,6 +65,7 @@ const Account = () => {
         <Button
           variant="ghost"
           className="h-10 border border-border-default bg-surface-primary text-text-primary hover:bg-surface-subtle"
+          onClick={() => setIsDeleteModalOpen(true)}
         >
           <Trash2 className="size-4" aria-hidden="true" strokeWidth={1.75} />
           <span>Excluir Conta</span>
@@ -68,6 +76,15 @@ const Account = () => {
           <span>Sair da Conta</span>
         </Button>
       </div>
+
+      <DeleteUserModal
+        open={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
+        onConfirm={() => {
+          setIsDeleteModalOpen(false);
+          void navigate({ to: "/" });
+        }}
+      />
     </section>
   );
 };
