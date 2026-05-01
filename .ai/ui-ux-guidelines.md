@@ -12,7 +12,7 @@
 | Token             | Light Mode (RGBA) | Dark Mode (RGBA) | Usage                                |
 | :---------------- | :---------------- | :--------------- | :----------------------------------- |
 | `brand-primary`   | 30, 58, 138, 1    | 30, 58, 138, 1   | Cor principal / Call to Action       |
-| `surface-primary` | 255, 255, 255, 1  | 17, 24, 39, 1    | Background principal das telas       |
+| `surface-primary` | 240, 240, 240, 1  | 17, 24, 39, 1    | Background principal das telas       |
 | `text-primary`    | 17, 24, 39, 1     | 255, 255, 255, 1 | Títulos e corpo principal            |
 | `text-secondary`  | 107, 114, 128, 1  | 156, 163, 175, 1 | Textos de apoio e labels             |
 | `critical`        | 251, 44, 54, 1    | 251, 44, 54, 1   | Erros e notas baixas (Score < 50)    |

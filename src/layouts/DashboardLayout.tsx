@@ -1,6 +1,5 @@
 import { type FC, type ReactNode } from "react";
 import Sidebar from "@/components/shared/Sidebar";
-import Header from "@/components/shared/Header";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -32,7 +31,6 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({
         onNewProject={handleNewProject}
       />
       <div className="flex-1 flex flex-col">
-        <Header onNewProject={handleNewProject} />
         <main className="flex-1 flex flex-col items-center py-8 overflow-y-auto gap-8">
           {children}
         </main>

@@ -43,9 +43,9 @@
     --brand-subtle: 240 247 255;
 
     /* Surfaces */
-    --surface-primary: 255 255 255;
+    --surface-primary: 240 240 240;
     --surface-subtle: 249 250 251;
-    --surface-nav: 255 255 255;
+    --surface-nav: 240 240 240;
     --surface-brand-medium: 30 58 138; /* Opacity handled by Tailwind */
     --surface-brand-low: 30 58 138; /* Opacity handled by Tailwind */
 

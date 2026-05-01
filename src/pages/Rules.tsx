@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
+import { Plus } from "lucide-react";
 import Button from "@/components/ui/Button";
 import ProjectSearchInput from "@/features/projects/components/ProjectSearchInput";
 import { RulesGrid, type RuleCardData } from "@/features/rules";
@@ -148,8 +149,8 @@ const Rules = () => {
 
   return (
     <section className="w-full max-w-[1200px] px-6 pb-10">
-      <div className="mb-8 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div className="flex-1 max-w-xl">
+      <div className="mb-8 flex justify-center">
+        <div className="w-full max-w-xl">
           <ProjectSearchInput
             value={searchTerm}
             onChange={(event) => setSearchTerm(event.target.value)}
@@ -158,19 +159,12 @@ const Rules = () => {
             className="w-full"
           />
         </div>
-
-        <Button variant="ghost">+ Nova Regra</Button>
       </div>
 
       <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-        <div>
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-text-secondary">
-            Regras cadastradas
-          </p>
-          <h1 className="text-2xl font-semibold text-text-primary">
-            Explorar regras
-          </h1>
-        </div>
+        <h1 className="text-2xl font-semibold text-text-primary">
+          Regras cadastradas
+        </h1>
 
         {showVerMaisButton && (
           <button
@@ -196,13 +190,14 @@ const Rules = () => {
       <RulesGrid rules={visibleRules} onOpenRule={handleOpenRule} />
 
       {showFooterCount && (
-        <div className="mt-8 flex flex-col items-center justify-center gap-4 rounded-xl border border-border-default bg-surface-primary p-6 sm:flex-row">
+        <div className="mt-8 flex flex-col items-center justify-center gap-4">
           <span className="text-sm text-text-secondary text-center">
             {totalRules} regras cadastradas
           </span>
-          {showNewRuleButton && (
-            <Button>+ Nova Regra</Button>
-          )}
+          <Button className="h-9 px-3 gap-0">
+            <Plus className="w-4 h-4" aria-hidden="true" strokeWidth={1.75} />
+            <span className="font-medium text-sm">Nova Regra</span>
+          </Button>
         </div>
       )}
 
