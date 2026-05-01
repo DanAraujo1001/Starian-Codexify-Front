@@ -9,6 +9,8 @@
   --color-surface-primary: rgb(var(--surface-primary));
   --color-surface-subtle: rgb(var(--surface-subtle));
   --color-surface-nav: rgb(var(--surface-nav));
+  --color-surface-sidebar: rgb(var(--surface-sidebar));
+  --color-surface-selected: rgb(var(--surface-selected));
   --color-surface-brand-medium: rgb(var(--surface-brand-medium));
   --color-surface-brand-low: rgb(var(--surface-brand-low));
 
@@ -37,35 +39,37 @@
     --font-primary: "Inter", sans-serif;
 
     /* Brand Colors */
-    --brand-primary: 30 58 138;
-    --brand-dark: 15 23 42;
-    --brand-hover: 23 37 84;
-    --brand-subtle: 240 247 255;
+    --brand-primary: 12 34 86;
+    --brand-dark: 8 24 62;
+    --brand-hover: 25 71 179;
+    --brand-subtle: 227 231 242;
 
     /* Surfaces */
-    --surface-primary: 255 255 255;
-    --surface-subtle: 249 250 251;
-    --surface-nav: 255 255 255;
-    --surface-brand-medium: 30 58 138; /* Opacity handled by Tailwind */
-    --surface-brand-low: 30 58 138; /* Opacity handled by Tailwind */
+    --surface-primary: 240 240 240;
+    --surface-subtle: 209 213 219;
+    --surface-nav: 31 41 55;
+    --surface-sidebar: 228 228 228;
+    --surface-selected: 240 240 240;
+    --surface-brand-medium: 201 214 255; /* Opacity handled by Tailwind */
+    --surface-brand-low: 201 214 255; /* Opacity handled by Tailwind */
 
     /* Text */
     --text-primary: 17 24 39;
     --text-secondary: 107 114 128;
-    --text-button: 55 65 81;
+    --text-button: 255 255 255;
     --text-brand: 255 255 255;
-    --text-inverse: 255 255 255;
+    --text-inverse: 17 24 39;
 
     /* Status & Feedback */
     --critical-light: 251 44 54;
-    --critical-dark: 193 0 7;
+    --critical-dark: 248 85 93;
     --medium-light: 240 177 0;
-    --medium-dark: 166 95 0;
+    --medium-dark: 234 179 24;
     --excellent-light: 0 201 80;
-    --excellent-dark: 0 130 54;
+    --excellent-dark: 8 219 92;
 
     /* Borders & Overlays */
-    --border-default: 229 231 235;
+    --border-default: 156 163 175;
     --bg-overlay: 0 0 0;
   }
 
@@ -80,6 +84,8 @@
     --surface-primary: 17 24 39;
     --surface-subtle: 55 65 81;
     --surface-nav: 31 41 55;
+    --surface-sidebar: 9 14 26;
+    --surface-selected: 75 85 99;
     --surface-brand-medium: 186 230 253;
     --surface-brand-low: 186 230 253;
 
