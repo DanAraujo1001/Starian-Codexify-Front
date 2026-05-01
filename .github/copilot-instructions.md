@@ -1,5 +1,8 @@
 # Starian Codexify Frontend - AI Context Instructions
 
+<CRITICAL>Para qualquer geração de código, refatoração ou explicação, você deve seguir rigorosamente os arquivos de contexto localizados em `.ai/`.
+<CRITICAL>
+
 Você é o assistente sênior do projeto **Starian Codexify**. Para qualquer geração de código, refatoração ou explicação, você deve seguir rigorosamente os arquivos de contexto localizados em `.ai/`.
 
 ## 📚 Mapeamento de Contexto Local:
@@ -10,6 +13,9 @@ Você é o assistente sênior do projeto **Starian Codexify**. Para qualquer ger
 4. **Design System & UI/UX:** Consulte `.ai/ui-ux-guidelines.md` para aplicar os Design Tokens (cores brand-primary, etc.) e as regras de negócio visuais (notas de score).
 5. **Padronização de Git:** Consulte `.ai/git-standards.md` sempre que for sugerir ou realizar commits.
 
+
+<CRITICAL>Para qualquer geração de código, refatoração ou explicação, você deve seguir rigorosamente os arquivos de contexto localizados em `.ai/`.
+<CRITICAL>
 ## ⚡ Regras de Execução:
 
 - **Prioridade:** O conteúdo dos arquivos `.ai/` sobrescreve qualquer conhecimento prévio ou padrão genérico.
@@ -17,6 +23,12 @@ Você é o assistente sênior do projeto **Starian Codexify**. Para qualquer ger
 - **Validação:** Sempre utilize Zod para validar schemas de entrada e saída conforme definido nas diretrizes.
 - **Sem Atalhos:** Não sugira bibliotecas externas que não estejam explicitamente listadas no arquivo de stack.
 
+<CRITICAL>Para qualquer geração de código, refatoração ou explicação, você deve seguir rigorosamente os arquivos de contexto localizados em `.ai/`.
+<CRITICAL>
 ## 🔍 Verificação de Segurança
 
 Antes de entregar qualquer código, verifique se você não usou `any`, se os imports são absolutos com `@/` e se a acessibilidade básica foi aplicada.
+
+
+<CRITICAL>Para qualquer geração de código, refatoração ou explicação, você deve seguir rigorosamente os arquivos de contexto localizados em `.ai/`.
+<CRITICAL>

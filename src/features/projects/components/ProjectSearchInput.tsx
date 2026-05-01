@@ -7,8 +7,8 @@ const ProjectSearchInput: FC<InputHTMLAttributes<HTMLInputElement>> = (
     <input
       {...props}
       className="bg-surface-primary border border-border-default rounded-md shadow-input pl-3 pr-10 py-1.5 w-full h-full text-sm text-text-secondary placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-brand-primary transition-all duration-200 hover:border-brand-primary hover:shadow-input-hover"
-      placeholder="Qual Projeto você procura"
-      aria-label="Buscar projeto"
+      placeholder="Qual regra você procura?"
+      aria-label="Buscar regra"
     />
     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary">
       <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
