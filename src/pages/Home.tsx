@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import { type FC, useState } from "react";
 import ProjectCard from "@/features/projects/components/ProjectCard";
 import ProjectSearchInput from "@/features/projects/components/ProjectSearchInput";
 import ProjectsEmptyState from "@/features/projects/components/ProjectsEmptyState";
@@ -16,13 +16,36 @@ interface HomeProps {
 }
 
 const Home: FC<HomeProps> = ({ projects, onNewProject }) => {
-  return projects.length === 0 ? (
-    <ProjectsEmptyState onNewProject={onNewProject} />
-  ) : (
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredProjects = projects.filter((project) =>
+    project.name.toLowerCase().includes(searchQuery.toLowerCase()),
+  );
+
+  if (projects.length === 0) {
+    return <ProjectsEmptyState onNewProject={onNewProject} />;
+  }
+
+  if (filteredProjects.length === 0) {
+    return (
+      <>
+        <ProjectSearchInput
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.currentTarget.value)}
+        />
+        <ProjectsEmptyState onNewProject={onNewProject} />
+      </>
+    );
+  }
+
+  return (
     <>
-      <ProjectSearchInput />
+      <ProjectSearchInput
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.currentTarget.value)}
+      />
       <div className="grid grid-cols-3 gap-6 w-244">
-        {projects.map((project, index) => (
+        {filteredProjects.map((project, index) => (
           <ProjectCard
             key={project.id}
             name={project.name}
