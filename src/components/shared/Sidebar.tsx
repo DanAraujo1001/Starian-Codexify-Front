@@ -1,4 +1,4 @@
-import { type FC, useState } from "react";
+import { type FC } from "react";
 import {
   ChevronLeft,
   ChevronRight,
@@ -22,6 +22,8 @@ interface SidebarProps {
   onNewProject: () => void;
   selected: string;
   onSelect: (section: string) => void;
+  isCollapsed: boolean;
+  onIsCollapsedChange: (isCollapsed: boolean) => void;
 }
 
 interface MenuItem {
@@ -51,15 +53,15 @@ const Sidebar: FC<SidebarProps> = ({
   onNewProject,
   selected,
   onSelect,
+  isCollapsed,
+  onIsCollapsedChange,
 }) => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
-
   return (
     <aside
       className={cn(
-        "bg-surface-sidebar rounded-xl shadow-sm overflow-hidden flex flex-col justify-between p-6 transition-all duration-200 m-6",
+        "fixed left-6 top-6 z-10 bg-surface-sidebar rounded-xl shadow-sm overflow-hidden flex flex-col justify-between p-6 transition-all duration-200",
         isCollapsed
-          ? "w-[5.525rem] min-w-21.25 p-2 h-[calc(100vh-3rem)]"
+          ? "w-[5.525rem] min-w-[5.525rem] p-2 h-[calc(100vh-3rem)]"
           : "w-[16.9469rem] h-[calc(100vh-3rem)]",
       )}
     >
@@ -88,7 +90,7 @@ const Sidebar: FC<SidebarProps> = ({
           <Button
             variant="ghost"
             className="h-8 w-8 p-0 text-text-secondary hover:text-text-primary"
-            onClick={() => setIsCollapsed((state) => !state)}
+            onClick={() => onIsCollapsedChange(!isCollapsed)}
             aria-label={isCollapsed ? "Expandir sidebar" : "Recolher sidebar"}
           >
             {isCollapsed ? (
