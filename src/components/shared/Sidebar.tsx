@@ -57,8 +57,10 @@ const Sidebar: FC<SidebarProps> = ({
   return (
     <aside
       className={cn(
-        "bg-surface-primary border-r border-border-default flex h-full flex-col justify-between p-6 transition-all duration-200",
-        isCollapsed ? "w-[5.525rem] min-w-21.25 p-2" : "w-[16.9469rem]",
+        "bg-surface-sidebar rounded-xl shadow-sm overflow-hidden flex flex-col justify-between p-6 transition-all duration-200 m-6",
+        isCollapsed
+          ? "w-[5.525rem] min-w-21.25 p-2 h-[calc(100vh-3rem)]"
+          : "w-[16.9469rem] h-[calc(100vh-3rem)]",
       )}
     >
       <div>
@@ -68,16 +70,16 @@ const Sidebar: FC<SidebarProps> = ({
             isCollapsed ? "justify-center" : "justify-between",
           )}
         >
-          <div className="flex items-center gap-2">
-            <div className="bg-brand-primary rounded-md w-8 h-8 flex items-center justify-center">
+          <div className="flex items-center gap-3">
+            <div className="bg-surface-brand-medium rounded-lg w-10 h-10 flex items-center justify-center">
               <img
                 src="/assets/sidebar-logo.svg"
                 alt="Logo"
-                className="w-4 h-4"
+                className="w-5 h-5"
               />
             </div>
             {!isCollapsed && (
-              <span className="font-medium text-lg text-text-primary font-sans">
+              <span className="font-semibold text-lg text-text-primary font-sans">
                 Codexify
               </span>
             )}
@@ -85,7 +87,7 @@ const Sidebar: FC<SidebarProps> = ({
 
           <Button
             variant="ghost"
-            className="h-8 w-8 p-0"
+            className="h-8 w-8 p-0 text-text-secondary hover:text-text-primary"
             onClick={() => setIsCollapsed((state) => !state)}
             aria-label={isCollapsed ? "Expandir sidebar" : "Recolher sidebar"}
           >
@@ -97,15 +99,15 @@ const Sidebar: FC<SidebarProps> = ({
           </Button>
         </div>
 
-        <nav className="flex flex-col gap-2 mb-6">
+        <nav className="flex flex-col gap-2">
           {menu.map((item) => (
             <Button
               key={item.key}
               variant={selected === item.key ? "primary" : "ghost"}
               className={cn(
-                "w-full rounded px-2 py-2 transition-all duration-200",
+                "w-full rounded-lg px-2 py-2 transition-all duration-200 text-text-primary hover:bg-surface-brand-low",
                 isCollapsed ? "justify-center gap-0 px-0" : "justify-start",
-                selected === item.key && "text-text-brand",
+                selected === item.key && "bg-surface-selected text-text-brand",
               )}
               onClick={() => onSelect(item.key)}
               aria-current={selected === item.key ? "page" : undefined}
@@ -117,7 +119,7 @@ const Sidebar: FC<SidebarProps> = ({
                 strokeWidth={1.75}
               />
               {!isCollapsed && (
-                <span className="text-sm font-sans font-medium">
+                <span className="text-sm font-sans font-medium ml-2">
                   {item.label}
                 </span>
               )}
@@ -126,7 +128,11 @@ const Sidebar: FC<SidebarProps> = ({
         </nav>
 
         <Button
-          className={cn("mt-2 w-full py-3", isCollapsed ? "px-0" : "")}
+          variant="primary"
+          className={cn(
+            "mt-2 w-full py-3 rounded-md flex items-center justify-center gap-2",
+            isCollapsed ? "px-0" : "px-3",
+          )}
           onClick={onNewProject}
           aria-label="Novo Projeto"
         >
@@ -139,9 +145,9 @@ const Sidebar: FC<SidebarProps> = ({
         variant="ghost"
         className={cn(
           "mt-6 w-full overflow-hidden border border-border-default p-0 text-left transition-all duration-200 hover:bg-surface-subtle",
-          selected === "account" && "border-brand-primary bg-brand-subtle",
+          selected === "account" && "bg-surface-selected border-brand-primary",
           isCollapsed
-            ? "flex h-16 w-16 items-center justify-center rounded-full bg-surface-primary p-1"
+            ? "flex h-16 w-16 items-center justify-center rounded-full bg-surface-sidebar p-1"
             : "flex items-center gap-3 rounded-lg p-3",
         )}
         onClick={() => onSelect("account")}
