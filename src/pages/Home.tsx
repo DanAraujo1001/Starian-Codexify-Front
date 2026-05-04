@@ -32,6 +32,8 @@ const Home: FC<HomeProps> = ({ projects, onNewProject }) => {
         <ProjectSearchInput
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.currentTarget.value)}
+          placeholder="Qual projeto você procura?"
+          aria-label="Buscar projeto"
         />
         <ProjectsEmptyState onNewProject={onNewProject} />
       </>
@@ -43,6 +45,8 @@ const Home: FC<HomeProps> = ({ projects, onNewProject }) => {
       <ProjectSearchInput
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.currentTarget.value)}
+        placeholder="Qual projeto você procura?"
+        aria-label="Buscar projeto"
       />
       <div className="grid grid-cols-3 gap-6 w-244">
         {filteredProjects.map((project, index) => (

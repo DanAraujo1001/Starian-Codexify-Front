@@ -15,11 +15,11 @@ const RULES_MOCK: RuleCardData[] = [
     colorClass: "bg-blue-500",
   },
   {
-    id: "projeto-cajueiro",
-    name: "Projeto Cajueiro",
+    id: "regra-cajueiro",
+    name: "Regra Cajueiro",
     status: "Ativo",
     linkedProjects: 3,
-    initials: "PC",
+    initials: "RC",
     colorClass: "bg-emerald-500",
   },
   {
@@ -47,11 +47,11 @@ const RULES_MOCK: RuleCardData[] = [
     colorClass: "bg-red-500",
   },
   {
-    id: "projeto-laranjeira",
-    name: "Projeto Laranjeira",
+    id: "regra-laranjeira",
+    name: "Regra Laranjeira",
     status: "Ativo",
     linkedProjects: 4,
-    initials: "PL",
+    initials: "RL",
     colorClass: "bg-sky-500",
   },
   {
@@ -71,11 +71,11 @@ const RULES_MOCK: RuleCardData[] = [
     colorClass: "bg-teal-500",
   },
   {
-    id: "projeto-figueira",
-    name: "Projeto Figueira",
+    id: "regra-figueira",
+    name: "Regra Figueira",
     status: "Ativo",
     linkedProjects: 8,
-    initials: "PF",
+    initials: "RF",
     colorClass: "bg-indigo-500",
   },
   {
@@ -87,11 +87,11 @@ const RULES_MOCK: RuleCardData[] = [
     colorClass: "bg-lime-500",
   },
   {
-    id: "projeto-olivio",
-    name: "Projeto Olívio",
+    id: "regra-olivio",
+    name: "Regra Olívio",
     status: "Inativo",
     linkedProjects: 5,
-    initials: "PO",
+    initials: "RO",
     colorClass: "bg-fuchsia-500",
   },
   {
@@ -123,7 +123,6 @@ const Rules = () => {
   const visibleRules = searchTerm || showAll ? filteredRules : RULES_MOCK.slice(0, 6);
   const showVerMaisButton = hasMoreThanNine && !showAll && !searchTerm;
   const showFooterCount = hasMoreThanNine;
-  const showNewRuleButton = totalRules < 9;
 
   const handleOpenRule = (id: string) => {
     void navigate({ to: `/rules/${id}` });
