@@ -4,6 +4,7 @@ import {
   createRouter,
 } from "@tanstack/react-router";
 import Account from "@/pages/Account";
+import DashboardPage from "@/pages/DashboardPage";
 import Rules from "@/pages/Rules";
 import {
   DashboardShell,
@@ -34,7 +35,7 @@ const rulesRoute = createRoute({
 const dashboardRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/dashboard",
-  component: () => <PlaceholderSection title="Dashboard" />,
+  component: DashboardPage,
 });
 
 const settingsRoute = createRoute({
