@@ -5,6 +5,7 @@ import {
 } from "@tanstack/react-router";
 import Account from "@/pages/Account";
 import Rules from "@/pages/Rules";
+import ProjectDetails from "@/pages/ProjectDetails";
 import {
   DashboardShell,
   HomeRoutePage,
@@ -31,6 +32,12 @@ const rulesRoute = createRoute({
   component: Rules,
 });
 
+const projectDetailsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/projects/$projectId",
+  component: ProjectDetails,
+});
+
 const dashboardRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/dashboard",
@@ -53,6 +60,7 @@ const routeTree = rootRoute.addChildren([
   homeRoute,
   accountRoute,
   rulesRoute,
+  projectDetailsRoute,
   dashboardRoute,
   settingsRoute,
   helpRoute,
