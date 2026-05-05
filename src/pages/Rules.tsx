@@ -120,10 +120,10 @@ const Rules = () => {
     [searchTerm],
   );
 
-  const visibleRules = searchTerm || showAll ? filteredRules : RULES_MOCK.slice(0, 6);
+  const visibleRules =
+    searchTerm || showAll ? filteredRules : RULES_MOCK.slice(0, 6);
   const showVerMaisButton = hasMoreThanNine && !showAll && !searchTerm;
   const showFooterCount = hasMoreThanNine;
-  const showNewRuleButton = totalRules < 9;
 
   const handleOpenRule = (id: string) => {
     void navigate({ to: `/rules/${id}` });
@@ -137,11 +137,10 @@ const Rules = () => {
             Nenhuma regra cadastrada
           </h1>
           <p className="mt-3 text-sm text-text-secondary">
-            Crie sua primeira regra para começar a gerenciar projetos e políticas.
+            Crie sua primeira regra para começar a gerenciar projetos e
+            políticas.
           </p>
-          <Button className="mt-6">
-            + Nova Regra
-          </Button>
+          <Button className="mt-6">+ Nova Regra</Button>
         </div>
       </section>
     );
@@ -200,7 +199,6 @@ const Rules = () => {
           </Button>
         </div>
       )}
-
     </section>
   );
 };
