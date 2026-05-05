@@ -12,6 +12,7 @@ import {
 import Button from "@/components/ui/Button";
 import { cn } from "@/utils/cn";
 import { useProject } from "@/contexts/ProjectContext";
+import AiAnalysisPanel from "@/features/analysis/components/AiAnalysisPanel";
 
 type DetailTab = "overview" | "ai" | "changes" | "rules";
 
@@ -65,7 +66,7 @@ const MOCK_PROJECTS: Record<string, Project> = {
 
 const tabs: { id: DetailTab; label: string; icon: LucideIcon }[] = [
   { id: "overview", label: "Visão Geral", icon: UserRound },
-  { id: "ai", label: "IA", icon: Sparkles },
+  { id: "ai", label: "Análise IA", icon: Sparkles },
   { id: "changes", label: "Alterações", icon: FileText },
   { id: "rules", label: "Regras", icon: AlertTriangle },
 ];
@@ -153,6 +154,7 @@ const ProjectDetailsPage: FC = () => {
               <button
                 key={tab.id}
                 type="button"
+                id={`tab-${tab.id}`}
                 role="tab"
                 aria-selected={isSelected}
                 aria-controls={`project-panel-${tab.id}`}
@@ -176,143 +178,168 @@ const ProjectDetailsPage: FC = () => {
         </div>
       </div>
 
-      {/* Main grid */}
-      <div className="relative grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-2">
-        {/* Autor */}
-        <div className="flex flex-col gap-2">
-          <label className="text-[12px] font-medium leading-[18px] text-text-secondary">
-            AUTOR
-          </label>
-          <div className="flex items-center gap-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-primary text-surface-primary font-medium">
-              <span className="text-[14px] font-medium leading-[21px]">
-                {project.authorInitials}
+      {activeTab === "overview" && (
+        <div
+          className="relative grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-2"
+          id="project-panel-overview"
+          role="tabpanel"
+          aria-labelledby="tab-overview"
+        >
+          <div className="flex flex-col gap-2">
+            <label className="text-[12px] font-medium leading-[18px] text-text-secondary">
+              AUTOR
+            </label>
+            <div className="flex items-center gap-4">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-primary font-medium text-surface-primary">
+                <span className="text-[14px] font-medium leading-[21px]">
+                  {project.authorInitials}
+                </span>
+              </div>
+              <span className="text-[16px] font-normal leading-[24px] text-text-primary">
+                {project.authorName}
               </span>
             </div>
-            <span className="text-[16px] font-normal leading-[24px] text-text-primary">
-              {project.authorName}
-            </span>
           </div>
-        </div>
 
-        {/* Status */}
-        <div className="flex flex-col gap-2">
-          <label className="text-[12px] font-medium leading-[18px] text-text-secondary">
-            STATUS
-          </label>
-          <div className="relative h-[22px]">
-            <div className="inline-flex items-center gap-1 rounded-[4px] border-[0.8px] border-transparent bg-status-critical px-[8.8px] py-[2.8px] text-[12px] font-medium leading-[16px] text-text-brand">
-              <AlertTriangle
-                className="h-3 w-3"
-                aria-hidden="true"
-                strokeWidth={2.2}
-              />
-              <span>Issues</span>
+          <div className="flex flex-col gap-2">
+            <label className="text-[12px] font-medium leading-[18px] text-text-secondary">
+              STATUS
+            </label>
+            <div className="relative h-[22px]">
+              <div className="inline-flex items-center gap-1 rounded-[4px] border-[0.8px] border-transparent bg-status-critical px-[8.8px] py-[2.8px] text-[12px] font-medium leading-[16px] text-text-brand">
+                <AlertTriangle
+                  className="h-3 w-3"
+                  aria-hidden="true"
+                  strokeWidth={2.2}
+                />
+                <span>Issues</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Branch */}
-        <div className="flex flex-col gap-2">
-          <label className="text-[12px] font-medium leading-[18px] text-text-secondary">
-            BRANCH
-          </label>
-          <span className="text-[14px] font-normal leading-[21px] text-text-primary">
-            {project.branch}
-          </span>
-        </div>
+          <div className="flex flex-col gap-2">
+            <label className="text-[12px] font-medium leading-[18px] text-text-secondary">
+              BRANCH
+            </label>
+            <span className="text-[14px] font-normal leading-[21px] text-text-primary">
+              {project.branch}
+            </span>
+          </div>
 
-        {/* Criado em */}
-        <div className="flex flex-col gap-2">
-          <label className="text-[12px] font-medium leading-[18px] text-text-secondary">
-            CRIADO EM
-          </label>
-          <span className="text-[14px] font-normal leading-[21px] text-text-primary">
-            {project.createdAt}
-          </span>
-        </div>
+          <div className="flex flex-col gap-2">
+            <label className="text-[12px] font-medium leading-[18px] text-text-secondary">
+              CRIADO EM
+            </label>
+            <span className="text-[14px] font-normal leading-[21px] text-text-primary">
+              {project.createdAt}
+            </span>
+          </div>
 
-        <div className="lg:col-span-2 flex flex-col gap-2">
-          <label className="text-[12px] font-medium leading-[18px] text-text-secondary">
-            DESCRIÇÃO
-          </label>
-          <p className="text-[14px] font-normal leading-[21px] text-text-primary">
-            {project.description}
-          </p>
-        </div>
-
-        {/* Cards */}
-        <div className="mt-2 grid grid-cols-1 gap-3 lg:col-span-2 sm:grid-cols-3">
-          {/* Adições */}
-          <div className="flex min-h-[120px] flex-col items-center justify-center rounded-[6px] border border-border-default/60 bg-surface-primary p-4 text-center">
-            <p className="text-[40px] font-semibold leading-[40px] text-status-excellent">
-              +{project.additions}
-            </p>
-            <p className="mt-2 text-[16px] font-normal leading-[24px] text-text-secondary">
-              Adições
+          <div className="lg:col-span-2 flex flex-col gap-2">
+            <label className="text-[12px] font-medium leading-[18px] text-text-secondary">
+              DESCRIÇÃO
+            </label>
+            <p className="text-[14px] font-normal leading-[21px] text-text-primary">
+              {project.description}
             </p>
           </div>
 
-          {/* Remoções */}
-          <div className="flex min-h-[120px] flex-col items-center justify-center rounded-[6px] border border-border-default/60 bg-surface-primary p-4 text-center">
-            <p className="text-[40px] font-semibold leading-[40px] text-status-critical">
-              -{project.deletions}
-            </p>
-            <p className="mt-2 text-[16px] font-normal leading-[24px] text-text-secondary">
-              Remoções
-            </p>
+          <div className="mt-2 grid grid-cols-1 gap-3 lg:col-span-2 sm:grid-cols-3">
+            <div className="flex min-h-[120px] flex-col items-center justify-center rounded-[6px] border border-border-default/60 bg-surface-primary p-4 text-center">
+              <p className="text-[40px] font-semibold leading-[40px] text-status-excellent">
+                +{project.additions}
+              </p>
+              <p className="mt-2 text-[16px] font-normal leading-[24px] text-text-secondary">
+                Adições
+              </p>
+            </div>
+
+            <div className="flex min-h-[120px] flex-col items-center justify-center rounded-[6px] border border-border-default/60 bg-surface-primary p-4 text-center">
+              <p className="text-[40px] font-semibold leading-[40px] text-status-critical">
+                -{project.deletions}
+              </p>
+              <p className="mt-2 text-[16px] font-normal leading-[24px] text-text-secondary">
+                Remoções
+              </p>
+            </div>
+
+            <div className="flex min-h-[120px] flex-col items-center justify-center rounded-[6px] border border-border-default/60 bg-surface-primary p-4 text-center">
+              <p className="text-[40px] font-semibold leading-[40px] text-brand-primary">
+                {project.files}
+              </p>
+              <p className="mt-2 text-[16px] font-normal leading-[24px] text-text-secondary">
+                Arquivos
+              </p>
+            </div>
           </div>
 
-          {/* Arquivos */}
-          <div className="flex min-h-[120px] flex-col items-center justify-center rounded-[6px] border border-border-default/60 bg-surface-primary p-4 text-center">
-            <p className="text-[40px] font-semibold leading-[40px] text-brand-primary">
-              {project.files}
-            </p>
-            <p className="mt-2 text-[16px] font-normal leading-[24px] text-text-secondary">
-              Arquivos
-            </p>
+          <div className="lg:col-span-2 flex flex-col gap-4">
+            <h3 className="text-[16px] font-normal leading-[24px] text-text-primary">
+              Arquivos Alterados
+            </h3>
+            <ul className="flex flex-col gap-2">
+              {project.changes.map((change) => (
+                <li
+                  key={change.path}
+                  className="flex min-h-[57.6px] items-center justify-between rounded-[8px] border-[0.8px] border-border-default bg-surface-primary px-[16.8px] py-[16.8px]"
+                >
+                  <div className="flex items-center gap-3 text-text-primary">
+                    <FileTextIcon
+                      className="h-4 w-4 text-text-secondary"
+                      aria-hidden="true"
+                    />
+                    <span className="text-[16px] font-normal leading-[24px]">
+                      {change.path}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 text-[16px] font-normal leading-[24px]">
+                    <span className="text-[rgb(var(--excellent-dark))]">
+                      +{change.additions}
+                    </span>
+                    <span className="text-text-secondary">/</span>
+                    <span className="text-[rgb(var(--critical-dark))]">
+                      -{change.deletions}
+                    </span>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
+      )}
 
-        <div className="lg:col-span-2 flex flex-col gap-4">
-          <h3 className="text-[16px] font-normal leading-[24px] text-text-primary">
-            Arquivos Alterados
-          </h3>
-          <ul className="flex flex-col gap-2">
-            {project.changes.map((change) => (
-              <li
-                key={change.path}
-                className="flex min-h-[57.6px] items-center justify-between rounded-[8px] border-[0.8px] border-border-default bg-surface-primary px-[16.8px] py-[16.8px]"
-              >
-                <div className="flex items-center gap-3 text-text-primary">
-                  {/* <img
-                    src={changedFileIcon}
-                    alt=""
-                    className="h-4 w-4 shrink-0"
-                    aria-hidden="true"
-                  /> */}
-                  <FileTextIcon
-                    className="h-4 w-4 text-text-secondary"
-                    aria-hidden="true"
-                  />
-                  <span className="text-[16px] font-normal leading-[24px]">
-                    {change.path}
-                  </span>
-                </div>
-                <div className="flex items-center gap-3 text-[16px] font-normal leading-[24px]">
-                  <span className="text-[rgb(var(--excellent-dark))]">
-                    +{change.additions}
-                  </span>
-                  <span className="text-text-secondary">/</span>
-                  <span className="text-[rgb(var(--critical-dark))]">
-                    -{change.deletions}
-                  </span>
-                </div>
-              </li>
-            ))}
-          </ul>
+      {activeTab === "ai" && (
+        <div
+          id="project-panel-ai"
+          role="tabpanel"
+          aria-labelledby="tab-ai"
+          className="mb-6"
+        >
+          <AiAnalysisPanel score={35} />
         </div>
-      </div>
+      )}
+
+      {activeTab === "changes" && (
+        <div
+          id="project-panel-changes"
+          role="tabpanel"
+          aria-labelledby="tab-changes"
+          className="rounded-[12px] border border-border-default bg-surface-primary p-6 text-text-secondary"
+        >
+          Conteúdo de alterações em construção.
+        </div>
+      )}
+
+      {activeTab === "rules" && (
+        <div
+          id="project-panel-rules"
+          role="tabpanel"
+          aria-labelledby="tab-rules"
+          className="rounded-[12px] border border-border-default bg-surface-primary p-6 text-text-secondary"
+        >
+          Conteúdo de regras em construção.
+        </div>
+      )}
     </section>
   );
 };
