@@ -13,6 +13,7 @@ import Button from "@/components/ui/Button";
 import { cn } from "@/utils/cn";
 import { useProject } from "@/contexts/ProjectContext";
 import AiAnalysisPanel from "@/features/analysis/components/AiAnalysisPanel";
+import ChangesPanel from "@/features/analysis/components/ChangesPanel";
 
 type DetailTab = "overview" | "ai" | "changes" | "rules";
 
@@ -20,6 +21,16 @@ interface FileChange {
   path: string;
   additions: number;
   deletions: number;
+}
+
+interface Commit {
+  id: string;
+  title: string;
+  date: string;
+  path?: string;
+  additions?: number;
+  deletions?: number;
+  isHighlighted?: boolean;
 }
 
 interface Project {
@@ -35,6 +46,7 @@ interface Project {
   deletions: number;
   files: number;
   changes: FileChange[];
+  commits?: Commit[];
 }
 
 const MOCK_PROJECTS: Record<string, Project> = {
@@ -60,6 +72,57 @@ const MOCK_PROJECTS: Record<string, Project> = {
         deletions: 23,
       },
       { path: "src/config/oauth.config.js", additions: 28, deletions: 8 },
+    ],
+    commits: [
+      {
+        id: "commit-1",
+        title: "Implementar autenticação OAuth2 com refresh token",
+        date: "06/03/2026 - 08:30",
+        path: "src/auth/OAuthService.js",
+        additions: 145,
+        deletions: 12,
+        isHighlighted: true,
+      },
+      {
+        id: "commit-2",
+        title: "Implementar autenticação",
+        date: "31/03/2026 - 10:22",
+        path: "src/auth/TokenManager.js",
+        additions: 89,
+        deletions: 34,
+      },
+      {
+        id: "commit-3",
+        title: "Implementar autenticação",
+        date: "31/03/2026 - 10:22",
+        path: "src/middleware/authMiddleware.js",
+        additions: 56,
+        deletions: 23,
+      },
+      {
+        id: "commit-4",
+        title: "Implementar autenticação",
+        date: "31/03/2026 - 10:22",
+        path: "src/config/oauth.config.js",
+        additions: 28,
+        deletions: 8,
+      },
+      {
+        id: "commit-5",
+        title: "Implementar autenticação",
+        date: "31/03/2026 - 10:22",
+        path: "src/services/AuthService.js",
+        additions: 52,
+        deletions: 15,
+      },
+      {
+        id: "commit-6",
+        title: "Implementar autenticação",
+        date: "31/03/2026 - 10:22",
+        path: "src/components/LoginForm.tsx",
+        additions: 34,
+        deletions: 8,
+      },
     ],
   },
 };
@@ -324,9 +387,13 @@ const ProjectDetailsPage: FC = () => {
           id="project-panel-changes"
           role="tabpanel"
           aria-labelledby="tab-changes"
-          className="rounded-[12px] border border-border-default bg-surface-primary p-6 text-text-secondary"
+          className="mb-6"
         >
-          Conteúdo de alterações em construção.
+          <ChangesPanel
+            fileName="src/auth/OAuthService.js"
+            additions={20}
+            deletions={1}
+          />
         </div>
       )}
 
