@@ -1,4 +1,4 @@
-import { type FC, useState } from "react";
+import { type FC, useState, useEffect } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import {
   ArrowLeft,
@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import Button from "@/components/ui/Button";
 import { cn } from "@/utils/cn";
+import { useProject } from "@/contexts/ProjectContext";
 
 type DetailTab = "overview" | "ai" | "changes" | "rules";
 
@@ -71,6 +72,7 @@ const tabs: { id: DetailTab; label: string; icon: LucideIcon }[] = [
 
 const ProjectDetailsPage: FC = () => {
   const navigate = useNavigate();
+  const { setProject } = useProject();
   const pathname =
     typeof window !== "undefined" ? window.location.pathname : "/";
   const projectId = pathname.split("/").pop() || "projeto-alpha";
@@ -78,6 +80,23 @@ const ProjectDetailsPage: FC = () => {
     (projectId && MOCK_PROJECTS[projectId]) || MOCK_PROJECTS["projeto-alpha"];
 
   const [activeTab, setActiveTab] = useState<DetailTab>("overview");
+
+  // Passar dados do projeto para o Sidebar
+  useEffect(() => {
+    setProject({
+      id: project.id,
+      title: project.title,
+      mergeRequests: project.changes.map((change, index) => ({
+        id: `mr-${index}`,
+        title: index === 0 ? project.title : change.path,
+        date: index === 0 ? project.createdAt : "31/03/2026 - 10:22",
+      })),
+    });
+
+    return () => {
+      setProject(null);
+    };
+  }, [project, setProject]);
 
   return (
     <section className="w-full max-w-[1100px] px-6">

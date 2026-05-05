@@ -108,6 +108,24 @@
     --border-default: 75 85 99;
     --bg-overlay: 0 0 0;
   }
+
+  .sidebar-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--text-secondary)) transparent;
+  }
+
+  .sidebar-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .sidebar-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .sidebar-scrollbar::-webkit-scrollbar-thumb {
+    background: rgb(var(--text-secondary));
+    border-radius: 999px;
+  }
 }
 
 @layer base {
