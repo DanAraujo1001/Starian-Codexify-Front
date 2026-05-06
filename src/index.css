@@ -23,6 +23,7 @@
   --color-status-critical: rgb(var(--critical-light));
   --color-status-medium: rgb(var(--medium-light));
   --color-status-excellent: rgb(var(--excellent-light));
+  --color-status-info: rgb(var(--info-light));
   --color-border-default: rgb(var(--border-default));
 
   --radius-md: 8px;
@@ -67,6 +68,8 @@
     --medium-dark: 234 179 24;
     --excellent-light: 0 201 80;
     --excellent-dark: 8 219 92;
+    --info-light: 29 78 216;
+    --info-dark: 59 130 246;
 
     /* Borders & Overlays */
     --border-default: 156 163 175;
@@ -103,10 +106,30 @@
     --medium-dark: 234 179 24;
     --excellent-light: 0 201 80;
     --excellent-dark: 8 219 92;
+    --info-light: 29 78 216;
+    --info-dark: 59 130 246;
 
     /* Borders & Overlays */
     --border-default: 75 85 99;
     --bg-overlay: 0 0 0;
+  }
+
+  .sidebar-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--text-secondary)) transparent;
+  }
+
+  .sidebar-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .sidebar-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .sidebar-scrollbar::-webkit-scrollbar-thumb {
+    background: rgb(var(--text-secondary));
+    border-radius: 999px;
   }
 }
 
