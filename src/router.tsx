@@ -6,6 +6,7 @@ import {
 import Account from "@/pages/Account";
 import DashboardPage from "@/pages/DashboardPage";
 import Rules from "@/pages/Rules";
+import SettingsPage from "@/pages/SettingsPage";
 import {
   DashboardShell,
   HomeRoutePage,
@@ -41,7 +42,7 @@ const dashboardRoute = createRoute({
 const settingsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/settings",
-  component: () => <PlaceholderSection title="Configurações" />,
+  component: SettingsPage,
 });
 
 const helpRoute = createRoute({
