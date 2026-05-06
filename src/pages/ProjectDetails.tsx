@@ -196,9 +196,6 @@ const ProjectDetailsPage: FC = () => {
               />
             </Button>
             <div>
-              <p className="text-xs font-medium uppercase tracking-[0.18em] text-text-secondary">
-                Detalhes do Merge Request
-              </p>
               <h1 className="mt-1 text-2xl font-semibold text-text-primary">
                 {project.title}
               </h1>
@@ -207,15 +204,6 @@ const ProjectDetailsPage: FC = () => {
               </p>
             </div>
           </div>
-        </div>
-
-        <div className="flex items-center gap-3">
-          <Button variant="secondary" className="h-9 px-4">
-            Aprovar
-          </Button>
-          <Button variant="secondary" className="h-9 px-4 text-status-critical">
-            Rejeitar
-          </Button>
         </div>
       </div>
 
