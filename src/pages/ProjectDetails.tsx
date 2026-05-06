@@ -14,6 +14,9 @@ import { cn } from "@/utils/cn";
 import { useProject } from "@/contexts/ProjectContext";
 import AiAnalysisPanel from "@/features/analysis/components/AiAnalysisPanel";
 import ChangesPanel from "@/features/analysis/components/ChangesPanel";
+import RulesPanel, {
+  type ProjectRule,
+} from "@/features/analysis/components/RulesPanel";
 
 type DetailTab = "overview" | "ai" | "changes" | "rules";
 
@@ -47,6 +50,7 @@ interface Project {
   files: number;
   changes: FileChange[];
   commits?: Commit[];
+  rules?: ProjectRule[];
 }
 
 const MOCK_PROJECTS: Record<string, Project> = {
@@ -122,6 +126,18 @@ const MOCK_PROJECTS: Record<string, Project> = {
         path: "src/components/LoginForm.tsx",
         additions: 34,
         deletions: 8,
+      },
+    ],
+    rules: [
+      {
+        id: "regra-beta",
+        name: "Regra Beta",
+        severity: "critical",
+      },
+      {
+        id: "regra-padrao",
+        name: "Regra Padrão",
+        severity: "info",
       },
     ],
   },
@@ -402,9 +418,9 @@ const ProjectDetailsPage: FC = () => {
           id="project-panel-rules"
           role="tabpanel"
           aria-labelledby="tab-rules"
-          className="rounded-[12px] border border-border-default bg-surface-primary p-6 text-text-secondary"
+          className="mb-6"
         >
-          Conteúdo de regras em construção.
+          <RulesPanel rules={project.rules} />
         </div>
       )}
     </section>

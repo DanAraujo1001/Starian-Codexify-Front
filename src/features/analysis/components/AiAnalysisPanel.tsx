@@ -89,7 +89,7 @@ const issues: IssueItem[] = [
     title: "Acoplamento no construtor",
     badge: "INFO",
     badgeClassName: "border-status-info bg-status-info/10",
-    badgeTextClassName: "text-[var(--info-dark,#3b82f6)]",
+    badgeTextClassName: "text-status-info",
     date: "3 dias atrás - 2025-03-12",
     description:
       "O construtor está excessivamente acoplado ao OAuthConfig. Dificulta testes unitários e mocks. Recomenda-se passar parâmetros individuais no construtor.",
