@@ -4,7 +4,9 @@ import {
   createRouter,
 } from "@tanstack/react-router";
 import Account from "@/pages/Account";
+import DashboardPage from "@/pages/DashboardPage";
 import Rules from "@/pages/Rules";
+import SettingsPage from "@/pages/SettingsPage";
 import ProjectDetails from "@/pages/ProjectDetails";
 import {
   DashboardShell,
@@ -41,13 +43,13 @@ const projectDetailsRoute = createRoute({
 const dashboardRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/dashboard",
-  component: () => <PlaceholderSection title="Dashboard" />,
+  component: DashboardPage,
 });
 
 const settingsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/settings",
-  component: () => <PlaceholderSection title="Configurações" />,
+  component: SettingsPage,
 });
 
 const helpRoute = createRoute({
