@@ -7,6 +7,7 @@ import Account from "@/pages/Account";
 import DashboardPage from "@/pages/DashboardPage";
 import Rules from "@/pages/Rules";
 import SettingsPage from "@/pages/SettingsPage";
+import ProjectDetails from "@/pages/ProjectDetails";
 import {
   DashboardShell,
   HomeRoutePage,
@@ -33,6 +34,12 @@ const rulesRoute = createRoute({
   component: Rules,
 });
 
+const projectDetailsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/projects/$projectId",
+  component: ProjectDetails,
+});
+
 const dashboardRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/dashboard",
@@ -55,6 +62,7 @@ const routeTree = rootRoute.addChildren([
   homeRoute,
   accountRoute,
   rulesRoute,
+  projectDetailsRoute,
   dashboardRoute,
   settingsRoute,
   helpRoute,

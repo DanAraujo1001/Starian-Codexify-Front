@@ -1,7 +1,8 @@
-import { type FC } from "react";
+import { type ButtonHTMLAttributes, type FC } from "react";
 import { Bell } from "lucide-react";
+import { cn } from "@/utils/cn";
 
-interface ProjectCardProps {
+interface ProjectCardProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   name: string;
   manager: string;
   lastRequest: string;
@@ -13,8 +14,17 @@ const ProjectCard: FC<ProjectCardProps> = ({
   manager,
   lastRequest,
   highlight,
+  className,
+  ...props
 }) => (
-  <div className="bg-surface-subtle border border-border-default rounded-lg p-6 w-77.25 h-53.25 flex flex-col justify-between relative">
+  <button
+    type="button"
+    className={cn(
+      "bg-surface-subtle border border-border-default rounded-lg p-6 w-77.25 h-53.25 flex flex-col justify-between relative text-left transition-all duration-200 hover:-translate-y-0.5 hover:shadow-card focus:outline-none focus:ring-2 focus:ring-brand-primary",
+      className,
+    )}
+    {...props}
+  >
     <div>
       <h3 className="font-semibold text-lg text-text-primary mb-2">{name}</h3>
       <div className="text-xs text-text-secondary font-medium mb-1">
@@ -35,7 +45,7 @@ const ProjectCard: FC<ProjectCardProps> = ({
         />
       </div>
     )}
-  </div>
+  </button>
 );
 
 export default ProjectCard;

@@ -72,7 +72,9 @@ export const DashboardShell = () => {
     });
   };
 
-  const selectedSection = sectionByPath[location.pathname] ?? "home";
+  const selectedSection = location.pathname.startsWith("/projects/")
+    ? "home"
+    : (sectionByPath[location.pathname] ?? "home");
 
   const projectsContextValue = useMemo(
     () => ({ projects, onNewProject: handleNewProject }),

@@ -1,4 +1,5 @@
 import { type FC, useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import ProjectCard from "@/features/projects/components/ProjectCard";
 import ProjectSearchInput from "@/features/projects/components/ProjectSearchInput";
 import ProjectsEmptyState from "@/features/projects/components/ProjectsEmptyState";
@@ -16,6 +17,7 @@ interface HomeProps {
 }
 
 const Home: FC<HomeProps> = ({ projects, onNewProject }) => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredProjects = projects.filter((project) =>
@@ -52,6 +54,12 @@ const Home: FC<HomeProps> = ({ projects, onNewProject }) => {
             manager={project.manager}
             lastRequest={project.lastRequest}
             highlight={index === 0}
+            onClick={() =>
+              void navigate({
+                to: "/projects/$projectId",
+                params: { projectId: project.id },
+              })
+            }
           />
         ))}
       </div>
